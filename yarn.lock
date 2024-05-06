@@ -7193,11 +7193,6 @@ oblivious-set@1.0.0:
   resolved "https://registry.yarnpkg.com/oblivious-set/-/oblivious-set-1.0.0.tgz#c8316f2c2fb6ff7b11b6158db3234c49f733c566"
   integrity sha512-z+pI07qxo4c2CulUHCDf9lcqDlMSo72N/4rLUpRXf6fu+q8vjt8y0xS+Tlf8NTJDdTXHbdeO1n3MlbctwEoXZw==
 
-omick@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/omick/-/omick-1.0.1.tgz#092a2a0dfcd95e61d4d04411d3477ee1e683a5dd"
-  integrity sha512-jPdLmz22ZVTcYqyt1xpygyAdjazoL/i+nWNUpsa9gIubVowAmLUs1Y6oMYDploqZV7WOBkKloMB2KHIUTTJCMg==
-
 on-finished@2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.4.1.tgz#58c8c44116e54845ad57f14ab10b03533184ac3f"

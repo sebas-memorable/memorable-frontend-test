@@ -44,8 +44,8 @@ export interface Query {
   getCreativeProfile?: CreativeProfile;
   /** Get Performance Metrics */
   getPerformanceMetrics?: ChannelPerformanceMetrics[];
-  /** List Folders and creatives from specific folder */
-  listFolder: CreativeLibraryFolder;
+  /** Get a folder by its id. If the folderId is not specified, the root folder from the brand will be returned */
+  folder: CreativeLibraryFolder;
   /** Validate Invitation Code */
   validateInvitationCode: Scalars["String"];
   /** Get logged in user or NULL if it is not logged in */
@@ -474,14 +474,41 @@ export interface PerformanceMetrics {
 }
 
 export interface CreativeLibraryFolder {
-  id: Scalars["Float"];
-  parentId?: Scalars["Float"];
-  path: Scalars["String"];
-  folders?: CreativeLibraryFolder[];
-  creatives?: CreativeLibraryItem[];
-  createdAt: Scalars["DateTime"];
-  updatedAt: Scalars["DateTime"];
-  __typename: "CreativeLibraryFolder";
+  id: Scalars['Float']
+  parentId: (Scalars['Float'] | null)
+  path: Scalars['String']
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
+  /** Returns a folder childrens */
+  folders: CreativeLibraryFolder[]
+  /** Returns a folder creatives */
+  creatives: Creative[]
+  __typename: 'CreativeLibraryFolder'
+}
+
+/** All creative type enum values */
+export type CreativeType = 'Creative' | 'Animatic'
+
+export interface Creative {
+  brandId: Scalars['String']
+  createdAt: Scalars['DateTime']
+  fileType: FileType
+  id: Scalars['String']
+  name: Scalars['String']
+  status: CreativeStatus
+  type: CreativeType
+  updatedAt: Scalars['DateTime']
+  /** Get creative url */
+  url: Scalars['String']
+  /** Get creative thumbnail */
+  thumbnailUrl: Scalars['String']
+  /** Get creative clip embedding */
+  clipEmbeddingUrl: (Scalars['String'] | null)
+  /** Get creative heatmap */
+  heatmapUrl: (Scalars['String'] | null)
+  /** Get tags */
+  tags: (Tag[] | null)
+  __typename: 'Creative'
 }
 
 export interface CreativeLibraryItem {
@@ -1178,6 +1205,7 @@ export interface CreativeLibraryItemRequest {
 export interface CreativeLibraryFilter {
   brandId: Scalars["String"];
   folderId?: Scalars["Int"] | null;
+  creativeType?: Scalars["String"];
 }
 
 export interface UserRequest {
@@ -1944,8 +1972,8 @@ export interface QueryPromiseChain {
     ) => Promise<FieldsSelection<ChannelPerformanceMetrics, R>[] | undefined>;
   };
 
-  /** List Folders and creatives from specific folder */
-  listFolder: (args: {
+  /** Get a folder by its id. If the folderId is not specified, the root folder from the brand will be returned*/
+  folder: (args: {
     input: CreativeLibraryFilter;
   }) => CreativeLibraryFolderPromiseChain & {
     get: <R extends CreativeLibraryFolderRequest>(
@@ -2140,8 +2168,8 @@ export interface QueryObservableChain {
     >;
   };
 
-  /** List Folders and creatives from specific folder */
-  listFolder: (args: {
+  /** Get a folder by its id. If the folderId is not specified, the root folder from the brand will be returned */
+  folder: (args: {
     input: CreativeLibraryFilter;
   }) => CreativeLibraryFolderObservableChain & {
     get: <R extends CreativeLibraryFolderRequest>(

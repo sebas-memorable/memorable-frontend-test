@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import { Route } from "src/app/features/navigation/models/route.model";
+import Sectors from "src/app/pages/creative-intelligence-suite/pages/business-settings/pages/sectors/sectors.page";
 
 const AccountAndBrands = lazy(
   () =>
@@ -13,5 +14,10 @@ export const BusinessSettingsRoutes: Route[] = [
     path: "/business-settings/account-and-brands",
     element: AccountAndBrands,
     title: "Account & Brands",
+  },
+  {
+    path: "/business-settings/sectors",
+    element: Sectors,
+    title: "Sectors",
   },
 ];

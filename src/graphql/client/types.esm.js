@@ -107,7 +107,7 @@ export default {
           brandId: [4, "String!"],
         },
       ],
-      listFolder: [
+      folder: [
         59,
         {
           input: [62, "CreativeLibraryFilter!"],

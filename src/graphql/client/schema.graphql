@@ -104,9 +104,9 @@ type Query {
   ): [ChannelPerformanceMetrics!]
 
   """
-  List Folders and creatives from specific folder
+  Get a folder by its id. If the folderId is not specified, the root folder from the brand will be returned
   """
-  listFolder(input: CreativeLibraryFilter!): CreativeLibraryFolder!
+  folder(input: CreativeLibraryFilter!): CreativeLibraryFolder!
 
   """
   Validate Invitation Code
@@ -658,9 +658,16 @@ enum CreativeStatus {
   Ready
 }
 
+"""All creative type enum values"""
+enum CreativeType {
+  Creative
+  Animatic
+}
+
 input CreativeLibraryFilter {
   brandId: String!
   folderId: Int
+  creativeType: CreativeType = Creative
 }
 
 type User {
